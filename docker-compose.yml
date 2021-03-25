@@ -24,6 +24,7 @@ services:
       - /etc/arm-apps/data/postgres-data:/var/lib/postgresql/data
   sonarqube:
     image: sonarqube:lts
+    command: sysctl -w vm.max_map_count=262144
     ports:
       - 9000:9000
       - 9092:9092
