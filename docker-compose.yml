@@ -13,4 +13,31 @@ services:
     volumes:
       - /etc/arm-apps/data/jenkins_home:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
+  postgres:
+    image: postgres:9.6
+    networks:
+      - jenkins
+    environment:
+      POSTGRES_USER: sonar
+      POSTGRES_PASSWORD: admin852
+    volumes:
+      - /etc/arm-apps/data/postgres-data:/var/lib/postgresql/data
+  sonarqube:
+    image: sonarqube:lts
+    ports:
+      - 9000:9000
+      - 9092:9092
+    networks:
+      - jenkins
+    environment:
+      SONARQUBE_JDBC_USERNAME: sonar
+      SONARQUBE_JDBC_PASSWORD: admin852
+      SONARQUBE_JDBC_URL: "jdbc:postgresql://postgres:5432/sonar"
+    links:
+      - postgres
+    depends_on: 
+      - postgres
 
+networks:
+  jenkins:
+    driver: bridge
