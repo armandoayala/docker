@@ -30,7 +30,6 @@ services:
     networks:
       - jenkins
     environment:
-      #SONAR_WEB_CONTEXT: /sonarqube
       SONAR_JDBC_USERNAME: sonar
       SONAR_JDBC_PASSWORD: admin852
       SONAR_JDBC_URL: jdbc:postgresql://postgres:5432/sonar
