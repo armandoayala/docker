@@ -30,13 +30,11 @@ services:
     networks:
       - jenkins
     environment:
-      SONAR_WEB_CONTEXT: /sonarqube
+      #SONAR_WEB_CONTEXT: /sonarqube
       SONAR_JDBC_USERNAME: sonar
       SONAR_JDBC_PASSWORD: admin852
       SONAR_JDBC_URL: jdbc:postgresql://postgres:5432/sonar
       SONAR_UPDATECENTER_ACTIVATE: "false"
-      VIRTUAL_HOST: vps-1948771-x.dattaweb.com
-      VIRTUAL_PORT: 9000
     links:
       - postgres
     depends_on: 
