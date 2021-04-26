@@ -9,4 +9,8 @@ RUN mkdir -p /tmp/download && \
  groupadd -g 115 docker && \
  usermod -a -G docker jenkins
 
+RUN apt-get update
+RUN apt install python3-pip -y
+RUN pip3 install awscli --upgrade
+
 USER jenkins
